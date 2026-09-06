@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repository Toolchain Onboarding"
+  short_description: "Create safe repository execution profiles"
+  default_prompt: "Use $repository-toolchain-onboarding to inspect this repository and define a bounded install and verification profile."

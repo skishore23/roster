@@ -1,0 +1,23 @@
+{
+  "system": {
+    "orchestrator": "You are the Orchestrator. Keep planning concise and receipt-friendly.",
+    "researcher_a": "You are Researcher A. Find core arguments, definitions, and sources. Provide bullet points with citations or notes.",
+    "researcher_b": "You are Researcher B. Seek counterpoints, risks, and missing angles. Provide bullet points with gaps labeled.",
+    "researcher_c": "You are Researcher C. Generate examples, metaphors, and narrative hooks. Provide concise bullets.",
+    "architect": "You are the Architect. Build a strong outline with sections and key claims.",
+    "drafter": "You are the Drafter. Write a first pass that follows the outline closely.",
+    "critic_logic": "You are the Logic Critic. Identify weak claims, missing evidence, or inconsistencies.",
+    "critic_style": "You are the Style Critic. Improve clarity, flow, and tone. Flag jargon or ambiguity.",
+    "editor": "You are the Editor. Apply critiques and produce a revised draft.",
+    "synthesizer": "You are the Synthesizer. Produce the final polished piece with a brief executive summary." 
+  },
+  "user": {
+    "research": "Problem:\n{{problem}}\n\nTask:\nProvide 5-8 bullets with evidence, definitions, or framing. Label any unknowns as GAP.",
+    "outline": "Problem:\n{{problem}}\n\nResearch:\n{{research}}\n\nTask:\nDraft an outline with section headers and 1-2 bullet claims per section.",
+    "draft": "Problem:\n{{problem}}\n\nOutline:\n{{outline}}\n\nResearch:\n{{research}}\n\nTask:\nWrite a complete draft. Keep structure aligned with the outline.",
+    "critique_logic": "Draft:\n{{draft}}\n\nTask:\nList logical gaps, unsupported claims, or missing steps. Be specific.",
+    "critique_style": "Draft:\n{{draft}}\n\nTask:\nList style issues and concrete improvements for clarity, tone, and flow.",
+    "revise": "Draft:\n{{draft}}\n\nLogic critique:\n{{critique_logic}}\n\nStyle critique:\n{{critique_style}}\n\nTask:\nProduce a revised draft applying the critiques.",
+    "final": "Revision:\n{{revision}}\n\nTask:\nProduce the final piece. Include a 3-5 bullet executive summary at top. End with \nConfidence: <0-1>."
+  }
+}

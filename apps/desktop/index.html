@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11120f" />
+    <meta
+      name="description"
+      content="Roster is a repository agent workspace for coordinated local coding work."
+    />
+    <title>Roster</title>
+  </head>
+  <body>
+    <div class="roster-atmosphere" aria-hidden="true">
+      <div class="roster-grain"></div>
+      <span class="roster-orb orb-one"></span>
+      <span class="roster-orb orb-two"></span>
+    </div>
+    <main class="shell">
+      <header class="brand" aria-label="Roster">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>Roster</span>
+        <small>Developer preview</small>
+      </header>
+
+      <section class="onboarding" aria-labelledby="onboarding-title">
+        <header class="onboarding-intro">
+          <p class="eyebrow">Local repository workspace</p>
+          <h1 id="onboarding-title">Bring your repository into one room.</h1>
+          <p class="lede">Roster assembles a small coding team around your codebase, keeps its messages and evidence visible, and gives you one calm place to ask, build, review, and deliver.</p>
+        </header>
+
+        <div class="onboarding-layout">
+          <div class="setup-column">
+          <ol class="steps" aria-label="Roster setup">
+            <li class="step is-active" data-step="repository">
+              <span class="step-number">01</span>
+              <div>
+                <strong>Choose a repository</strong>
+                <span data-repository-summary>Choose a local Git workspace</span>
+              </div>
+            </li>
+            <li class="step" data-step="runtimes">
+              <span class="step-number">02</span>
+              <div>
+                <strong>Meet your repository team</strong>
+                <span data-runtime-summary>Discover what is installed</span>
+              </div>
+            </li>
+            <li class="step" data-step="room">
+              <span class="step-number">03</span>
+              <div>
+                <strong>Open your first room</strong>
+                <span>Start with one focused conversation</span>
+              </div>
+            </li>
+          </ol>
+
+          <section class="setup-card" aria-labelledby="workspace-title">
+            <div class="setup-heading">
+              <div>
+                <p class="kicker">Step one</p>
+                <h2 id="workspace-title">Choose a repository</h2>
+              </div>
+              <span class="local-badge">Local</span>
+            </div>
+            <p class="setup-copy">
+              Select a local Git workspace. Roster reads its structure first and
+              will ask before starting any change.
+            </p>
+            <button class="folder-action" type="button" data-select-workspace data-onboarding-primary>
+              <span data-folder-action-label>Choose repository</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </section>
+
+          <section class="setup-card runtime-panel" data-runtime-panel hidden aria-labelledby="runtime-title">
+            <div class="setup-heading">
+              <div>
+                <p class="kicker">Step two</p>
+                <h2 id="runtime-title">Meet your repository team</h2>
+              </div>
+              <button class="text-action" type="button" data-refresh-runtimes>Scan again</button>
+            </div>
+            <p class="setup-copy">Roster checks installed coding agents without authenticating. Choose who may work in this repository, then choose the default agent for coding work.</p>
+            <div class="runtime-list" data-runtime-list aria-live="polite"></div>
+            <button class="primary-action" type="button" data-launch disabled>
+              Open your first room
+              <span aria-hidden="true">→</span>
+            </button>
+          </section>
+
+          <p class="status" data-status role="status" aria-live="polite">Choose a repository to begin.</p>
+
+          <section class="runtime-error-panel" data-runtime-error hidden aria-labelledby="runtime-error-title">
+            <header><span><small>Local runtime</small><strong id="runtime-error-title">Roster couldn’t open this workspace.</strong></span></header>
+            <p data-runtime-error-summary>Check the local service and try again.</p>
+            <div>
+              <button type="button" data-retry-runtime>Retry</button>
+              <button type="button" data-copy-runtime-error>Copy details</button>
+            </div>
+            <details data-runtime-diagnostics>
+              <summary>Diagnostics</summary>
+              <pre data-runtime-error-details></pre>
+            </details>
+          </section>
+
+          <ul class="trust-list" aria-label="Local workspace guarantees">
+            <li>No account or hardware fingerprint</li>
+            <li>Agent processes and source stay on this device</li>
+            <li>Room state stays durable and inspectable</li>
+          </ul>
+          </div>
+
+          <section class="workspace-preview" data-workspace-preview aria-labelledby="workspace-preview-title">
+            <header>
+              <span><small>What opens next</small><strong id="workspace-preview-title">Your first repository room</strong></span>
+              <em><i aria-hidden="true"></i> Local</em>
+            </header>
+            <div class="preview-workspace">
+              <aside class="preview-room-rail" data-preview-room-rail aria-label="Room rail">
+                <span class="preview-rail-mark">R</span>
+                <span class="preview-rail-room is-current">#</span>
+                <span class="preview-rail-room">⌕</span>
+                <span class="preview-rail-room">✓</span>
+              </aside>
+              <div class="preview-conversation">
+                <header><span><small>Repository room</small><strong># first-room</strong></span><span class="preview-roster" data-preview-roster aria-live="polite">Runtime discovery pending</span></header>
+                <div class="preview-thread" aria-label="Conversation preview">
+                  <div class="preview-message-skeleton" data-preview-message-skeleton aria-hidden="true"><span></span><i></i><b></b></div>
+                  <p class="preview-activity"><i aria-hidden="true"></i>Live repository work appears here</p>
+                  <div class="preview-message-skeleton" data-preview-message-skeleton aria-hidden="true"><span></span><i></i><b></b></div>
+                </div>
+                <aside class="preview-workbench" aria-label="Workbench preview">
+                  <header><span>Workbench</span><small>Evidence stays attached</small></header>
+                  <div class="preview-workbench-row" aria-hidden="true"><i></i><span></span><b></b></div>
+                </aside>
+                <div class="preview-composer" data-preview-composer><span>Conversation composer</span><span aria-hidden="true">↑</span></div>
+              </div>
+            </div>
+            <footer>Conversation first. Workbench details stay one click away.</footer>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

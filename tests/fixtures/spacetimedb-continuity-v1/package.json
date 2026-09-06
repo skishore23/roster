@@ -1,0 +1,11 @@
+{
+  "name": "roster-spacetimedb-continuity-v1-fixture",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "spacetimedb": "2.6.1"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2"
+  }
+}

@@ -1,0 +1,12 @@
+.git
+.env
+.env.*
+.receipt
+.spacetime
+artifacts
+data
+dist
+node_modules
+apps/desktop/node_modules
+coverage
+*.log

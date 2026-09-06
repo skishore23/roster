@@ -1,0 +1,147 @@
+{
+  "name": "roster",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "A shared workspace where people and agents coordinate plans, tasks, decisions, execution, review, and evidence.",
+  "author": {
+    "name": "@shimikeri",
+    "url": "https://x.com/shimikeri"
+  },
+  "rosterProduct": {
+    "name": "Roster",
+    "category": "multi-agent coordination workspace"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "types": "dist/sdk/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/sdk/index.d.ts",
+      "import": "./dist/sdk/index.js"
+    },
+    "./authoring": {
+      "types": "./dist/sdk/authoring.d.ts",
+      "import": "./dist/sdk/authoring.js"
+    },
+    "./workspace": {
+      "types": "./dist/sdk/workspace.d.ts",
+      "import": "./dist/sdk/workspace.js"
+    },
+    "./orchestration": {
+      "types": "./dist/sdk/orchestration.d.ts",
+      "import": "./dist/sdk/orchestration.js"
+    },
+    "./capabilities": {
+      "types": "./dist/sdk/capabilities.d.ts",
+      "import": "./dist/sdk/capabilities.js"
+    },
+    "./runtime": {
+      "types": "./dist/sdk/runtime.d.ts",
+      "import": "./dist/sdk/runtime.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "prompts",
+    "public/assets",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "bin": {
+    "roster": "dist/cli.js"
+  },
+  "scripts": {
+    "dev": "node --watch --import tsx src/local.ts",
+    "dev:api": "node --watch --import tsx src/server.ts",
+    "serve:local": "node --import tsx src/local.ts",
+    "serve:api": "node --import tsx src/server.ts",
+    "cli": "node --import tsx src/cli.ts",
+    "start": "node dist/local.js",
+    "start:api": "node dist/server.js",
+    "eval:axiom": "node --import tsx scripts/axiom-eval.ts",
+    "eval:axiom:first": "node --import tsx scripts/axiom-eval.ts --case list_length_append_nat",
+    "eval:axiom-roster": "node --import tsx scripts/axiom-roster-eval.ts",
+    "eval:axiom-roster:first": "node --import tsx scripts/axiom-roster-eval.ts --case infinitely_many_primes",
+    "eval:creativity": "node --import tsx scripts/creativity-eval.ts",
+    "eval:creativity:prompts": "node --import tsx scripts/creativity-eval.ts --prompts",
+    "eval:creativity:live": "node --import tsx scripts/creativity-live-study.ts",
+    "eval:creativity:policy-replay": "node --import tsx scripts/creativity-composition-policy-replay.ts",
+    "eval:teambench:roster": "node --import tsx scripts/teambench-roster-eval.ts",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "prepack": "npm run build",
+    "build": "npm run clean && tsc -p tsconfig.json && npm run build:sdk-types && npm run build:canvas-client && npm run build:coding-client && npm run build:roster-client && npm run build:replay-client",
+    "build:sdk-types": "tsc -p tsconfig.sdk.json",
+    "build:canvas-client": "node scripts/build-canvas-client.mjs",
+    "build:coding-client": "node scripts/build-coding-client.mjs",
+    "coding:web": "node scripts/run-coding-web-dev.mjs",
+    "build:roster-client": "node scripts/build-roster-client.mjs",
+    "build:replay-client": "node scripts/build-replay-client.mjs",
+    "new:agent": "node --import tsx src/cli.ts new",
+    "test:axle:deterministic": "node --import tsx --test --test-concurrency=1 tests/deterministic/*.test.ts",
+    "test:smoke": "node --import tsx --test --test-concurrency=1 tests/smoke/*.test.ts",
+    "simulate:theorem": "node --import tsx --test --test-concurrency=1 tests/smoke/theorem-internal-simulation.test.ts",
+    "simulate:campaign": "node --import tsx scripts/simulation-campaign.ts",
+    "simulate:system": "node --import tsx scripts/system-verification.ts",
+    "accept:coding-runtimes": "node --import tsx scripts/coding-runtime-acceptance.ts",
+    "spacetime:build": "npm --prefix spacetimedb run build",
+    "spacetime:dev:local": "spacetime dev roster-local --server local --module-path ./spacetimedb --server-only --yes --no-config",
+    "spacetime:publish:local": "npm --prefix spacetimedb run publish:local",
+    "spacetime:publish:production": "node scripts/publish-spacetimedb.mjs",
+    "spacetime:generate": "npm --prefix spacetimedb run generate",
+    "test:perf": "node --import tsx --test --test-concurrency=1 tests/perf/*.bench.ts",
+    "test:soak": "node --import tsx scripts/spacetimedb-soak.ts",
+    "test:soak:production": "node --import tsx scripts/spacetimedb-soak.ts --require-provider",
+    "check:no-any": "if rg -n \"as any\\\\b|<any>|:\\\\s*any\\\\b|Runtime<any\\\\s*,\" src/core src/engine src/agents tests; then echo \"explicit any found\"; exit 1; fi",
+    "check:architecture-boundaries": "node scripts/check-architecture-boundaries.mjs",
+    "check:external-harness-boundary": "node scripts/check-external-harness-boundary.mjs",
+    "check:unused": "tsc -p tsconfig.json --noEmit --noUnusedLocals --noUnusedParameters",
+    "verify:code": "npm run check:public-source && npm run build && npm run check:no-any && npm run check:architecture-boundaries && npm run check:external-harness-boundary && npm run check:unused && npm run test:axle:deterministic && npm run test:smoke",
+    "verify:external": "node scripts/verify-with-spacetimedb.mjs --external",
+    "verify": "node scripts/verify-with-spacetimedb.mjs",
+    "desktop:dev": "npm --prefix apps/desktop run tauri:dev",
+    "desktop:dev:local": "npm --prefix apps/desktop run tauri:dev",
+    "desktop:build": "npm --prefix apps/desktop run tauri:build",
+    "desktop:build:production": "npm --prefix apps/desktop run tauri:build",
+    "desktop:verify": "npm --prefix apps/desktop run verify",
+    "check:public-source": "node scripts/check-public-source.mjs"
+  },
+  "dependencies": {
+    "@cortexkit/aft-pi": "0.52.1",
+    "@earendil-works/pi-coding-agent": "0.84.3",
+    "@earendil-works/pi-tui": "0.84.3",
+    "@hono/node-server": "^1.19.17",
+    "@hono/zod-validator": "^0.7.6",
+    "@letta-ai/trajectory": "git+https://github.com/letta-ai/trajectory.git#a665556089d6a3c59f5806ee109b4d36f6c2ac83",
+    "@oblivionocean/minigfm": "^1.0.7",
+    "@types/node": "^22.20.1",
+    "ajv": "^8.20.0",
+    "chalk": "5.6.2",
+    "determined": "^0.3.1",
+    "dotenv": "^17.2.3",
+    "hono": "^4.13.4",
+    "openai": "^6.16.0",
+    "sharp": "^0.35.3",
+    "spacetimedb": "2.6.1",
+    "yjs": "^13.6.31",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.2",
+    "mermaid": "11.17.1",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0"
+  },
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skishore23/roster.git"
+  },
+  "homepage": "https://github.com/skishore23/roster#readme",
+  "bugs": {
+    "url": "https://github.com/skishore23/roster/issues"
+  }
+}

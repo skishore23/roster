@@ -1,0 +1,45 @@
+{
+  "name": "@roster/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Roster desktop shell for local coding-agent coordination.",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:web": "vite",
+    "build:web": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "sidecar:stage": "npm --prefix ../.. run build && node scripts/stage-sidecar.mjs",
+    "sidecar:check": "node scripts/stage-sidecar.mjs --check",
+    "tauri": "tauri",
+    "tauri:info": "tauri info",
+    "test:native": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "tauri:dev": "node scripts/run-tauri-dev.mjs",
+    "tauri:build": "npm run sidecar:stage && tauri build",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "npm run test && npm run build:web && npm run test:native"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.11.1",
+    "@tauri-apps/plugin-dialog": "2.7.2",
+    "@tauri-apps/plugin-shell": "2.3.5"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.11.4",
+    "typescript": "7.0.2",
+    "vite": "8.1.5"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skishore23/roster.git",
+    "directory": "apps/desktop"
+  },
+  "homepage": "https://github.com/skishore23/roster#readme",
+  "bugs": {
+    "url": "https://github.com/skishore23/roster/issues"
+  }
+}

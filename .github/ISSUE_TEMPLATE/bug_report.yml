@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible problem in Roster.
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Include expected behavior and the actual result. Remove secrets and private repository data.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, OS, Node.js, SpacetimeDB CLI, and relevant agent runtime versions.
+    validations:
+      required: true

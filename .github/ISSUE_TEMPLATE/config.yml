@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/skishore23/roster/security/advisories/new
+    about: Report privately; do not include security vulnerabilities in public issues.

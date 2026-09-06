@@ -1,0 +1,4 @@
+# Historical examples: semanticKey and idempotencyKey task slugs, not credentials.
+141ada978ca29786c667931dabcd8e25157e4f3a:README.md:generic-api-key:269
+141ada978ca29786c667931dabcd8e25157e4f3a:docs/dynamic-agent-platform.md:generic-api-key:332
+574184a97985159f9673f4f752a20648f9317594:tests/smoke/node-code-mode.test.ts:generic-api-key:287

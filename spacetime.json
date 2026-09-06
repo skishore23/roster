@@ -1,0 +1,5 @@
+{
+  "server": "local",
+  "database": "roster-local",
+  "module-path": "./spacetimedb"
+}

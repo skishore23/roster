@@ -1,0 +1,4 @@
+interface:
+  display_name: "Roster Workspace Nodes"
+  short_description: "Build durable Roster nodes and shared workspaces"
+  default_prompt: "Use $roster-workspace-nodes to add or refactor a Roster node, runtime adapter, or shared-workspace workflow."

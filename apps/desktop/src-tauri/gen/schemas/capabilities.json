@@ -1,0 +1,1 @@
+{"main":{"identifier":"main","description":"Minimum capabilities for the trusted bundled Roster window.","local":true,"windows":["main"],"permissions":["core:default","dialog:allow-open"]}}

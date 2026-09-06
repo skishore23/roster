@@ -1,0 +1,154 @@
+[
+  {
+    "schemaVersion": "roster.creativity-trial.v1",
+    "suiteVersion": "roster-creativity-starter.v1",
+    "caseId": "offline-neighborhood-cooling",
+    "condition": "solo-neutral",
+    "seed": 7,
+    "modelFingerprint": "demo-model-v1",
+    "nodeModelFingerprints": {
+      "solo": "demo-model-v1"
+    },
+    "promptFingerprint": "solo-neutral-v1",
+    "contributions": [
+      {
+        "contributionId": "solo-plan",
+        "nodeId": "solo",
+        "round": 1,
+        "text": "Open one volunteer-run cooling room with bottled water, battery fans, and a paper check-in list.",
+        "mechanismTags": ["central-cooling-room", "volunteer-check-in"]
+      }
+    ],
+    "finalArtifact": {
+      "text": "Open one volunteer-run cooling room with bottled water, battery fans, and a private paper check-in list. A volunteer checks on absent residents.",
+      "selectedContributionIds": ["solo-plan"],
+      "mechanismTags": ["central-cooling-room", "volunteer-check-in"]
+    },
+    "judgments": [
+      {
+        "judgeId": "demo-human-1",
+        "judgeFamily": "human",
+        "blinded": true,
+        "scores": {
+          "originality": 35,
+          "usefulness": 61,
+          "coherence": 82,
+          "constraintSatisfaction": 54
+        },
+        "constraintPass": false
+      },
+      {
+        "judgeId": "demo-model-1",
+        "judgeFamily": "model-a",
+        "blinded": true,
+        "scores": {
+          "originality": 38,
+          "usefulness": 63,
+          "coherence": 80,
+          "constraintSatisfaction": 56
+        },
+        "constraintPass": false
+      }
+    ],
+    "usage": {
+      "inputTokens": 800,
+      "outputTokens": 300,
+      "totalTokens": 1100,
+      "costUsd": 0.08,
+      "durationMs": 2500
+    }
+  },
+  {
+    "schemaVersion": "roster.creativity-trial.v1",
+    "suiteVersion": "roster-creativity-starter.v1",
+    "caseId": "offline-neighborhood-cooling",
+    "condition": "team-independent-challenge",
+    "seed": 7,
+    "modelFingerprint": "demo-mixed-team-v1",
+    "nodeModelFingerprints": {
+      "explorer-a": "demo-model-v1",
+      "explorer-b": "demo-model-v1",
+      "explorer-c": "demo-model-v2",
+      "challenger": "demo-model-v3"
+    },
+    "promptFingerprint": "team-independent-challenge-v1",
+    "contributions": [
+      {
+        "contributionId": "thermal-map",
+        "nodeId": "explorer-a",
+        "round": 1,
+        "text": "Use door-hung color cards and timed walking routes to make a privacy-preserving thermal risk map without recording diagnoses.",
+        "mechanismTags": ["ambient-status-signal", "walking-route"]
+      },
+      {
+        "contributionId": "cool-battery",
+        "nodeId": "explorer-b",
+        "round": 1,
+        "text": "Freeze shared water containers before the outage and rotate them through insulated blanket tents as reusable thermal batteries.",
+        "mechanismTags": ["thermal-battery", "micro-cooling-zone"]
+      },
+      {
+        "contributionId": "buddy-mesh",
+        "nodeId": "explorer-c",
+        "round": 1,
+        "text": "Create a paper buddy mesh where every home has two neighbors and missed chalk marks trigger a private doorstep check.",
+        "mechanismTags": ["redundant-buddy-mesh", "chalk-heartbeat"]
+      },
+      {
+        "contributionId": "night-inversion",
+        "nodeId": "challenger",
+        "round": 2,
+        "text": "Invert the daytime shelter assumption: move cooling preparation to night, pre-cool mass, and use daytime checks only for exceptions.",
+        "mechanismTags": ["night-preconditioning", "exception-routing"],
+        "parentContributionIds": ["cool-battery", "buddy-mesh"]
+      }
+    ],
+    "finalArtifact": {
+      "text": "At night, volunteers pre-cool sealed water containers and household masonry, then place door cards and chalk heartbeat marks along paired walking routes. During the day, insulated blanket alcoves use the cold mass as thermal batteries. Each home has two buddies; a missing mark triggers a private doorstep check, never a public medical list. If temperatures stay unsafe after two rotations, the route moves that resident to the shaded shared alcove.",
+      "selectedContributionIds": ["thermal-map", "cool-battery", "buddy-mesh", "night-inversion"],
+      "mechanismTags": [
+        "ambient-status-signal",
+        "walking-route",
+        "thermal-battery",
+        "micro-cooling-zone",
+        "redundant-buddy-mesh",
+        "chalk-heartbeat",
+        "night-preconditioning",
+        "exception-routing"
+      ]
+    },
+    "judgments": [
+      {
+        "judgeId": "demo-human-2",
+        "judgeFamily": "human",
+        "blinded": true,
+        "scores": {
+          "originality": 84,
+          "usefulness": 81,
+          "coherence": 78,
+          "constraintSatisfaction": 91
+        },
+        "constraintPass": true
+      },
+      {
+        "judgeId": "demo-model-2",
+        "judgeFamily": "model-b",
+        "blinded": true,
+        "scores": {
+          "originality": 80,
+          "usefulness": 83,
+          "coherence": 81,
+          "constraintSatisfaction": 89
+        },
+        "constraintPass": true
+      }
+    ],
+    "usage": {
+      "inputTokens": 2900,
+      "outputTokens": 1400,
+      "totalTokens": 4300,
+      "costUsd": 0.31,
+      "durationMs": 3900
+    }
+  }
+]
