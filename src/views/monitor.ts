@@ -140,8 +140,8 @@ const monitorCss = (): string => `
 `;
 
 const roomDirectoryHtml = (): string => `<section class="room-directory" aria-labelledby="room-directory-title">
-  <header><div><h2 id="room-directory-title">Your rooms</h2><p>Each room keeps its people, conversation, domain artifact, and run history together. Open one to continue where the team left off.</p></div><span>${coordinationExamples().length} open rooms</span></header>
-  <div class="room-directory-grid">${coordinationExamples().map((example) => `<a class="room-directory-card" href="${esc(example.routePath ?? "/monitor")}"><span class="room-directory-mark" aria-hidden="true">${esc((example.roomName ?? example.name).replace(/^#/, "").slice(0, 1).toUpperCase())}</span><span class="room-directory-copy"><strong>${esc(example.roomName ?? `#${example.navigationId ?? example.agentId}`)}</strong><span>${esc(example.name)} · ${esc(example.navigationSummary ?? example.coordinationLabel)}</span></span><span class="room-directory-open" aria-hidden="true">›</span></a>`).join("")}</div>
+  <header><div><h2 id="room-directory-title">Your rooms</h2><p>Start in Coding for repository changes. The writing, visual, and proof rooms are reference examples of the coordination framework.</p></div><span>${coordinationExamples().length} open rooms</span></header>
+  <div class="room-directory-grid">${[...coordinationExamples()].sort((left, right) => Number(right.navigationId === "coding") - Number(left.navigationId === "coding")).map((example) => `<a class="room-directory-card" href="${esc(example.routePath ?? "/monitor")}"><span class="room-directory-mark" aria-hidden="true">${esc((example.roomName ?? example.name).replace(/^#/, "").slice(0, 1).toUpperCase())}</span><span class="room-directory-copy"><strong>${esc(example.roomName ?? `#${example.navigationId ?? example.agentId}`)}</strong><span>${esc(example.name)} · ${esc(example.navigationSummary ?? example.coordinationLabel)}</span></span><span class="room-directory-open" aria-hidden="true">›</span></a>`).join("")}</div>
 </section>`;
 
 const overviewHtml = (stream: string): string => `<div class="room-lobby">${roomDirectoryHtml()}<div class="overview-grid">
@@ -183,7 +183,7 @@ export const monitorShell = (options: MonitorShellOptions): string => {
   <a class="skip-link" href="#main-content">Skip to Roster lobby</a><div class="agent-app" data-slot="agent-shell">
     ${agentSidebarHtml({ active: "monitor", description: "Move between durable rooms, see who is working, and supervise the shared system.", footerHtml: `<span class="agent-status" data-tone="live">SpacetimeDB authority</span>` })}
     <main class="agent-main" id="main-content" data-slot="agent-main">
-      ${agentPageHeaderHtml({ eyebrow: "Where people and agents work together", title: "Your rooms", description: "Bring Codex, Claude, Pi, Hermes, or your own agent. Give everyone a shared room, a shared artifact, and a clear way to reach a decision.", metaHtml: `<span class="agent-status" data-roster-connection data-tone="warning" role="status" aria-live="polite">Connecting</span><span class="chip">Shared workspace</span>` })}
+      ${agentPageHeaderHtml({ eyebrow: "Where people and agents work together", title: "Your rooms", description: "Bring Codex, Claude, Pi, Hermes, or your own agent. Give everyone a shared room, a shared artifact, and a clear way to reach a decision.", metaHtml: `<span class="agent-status" data-roster-connection data-tone="warning" role="status" aria-live="polite">Connecting</span><span class="chip">Single-operator preview</span>` })}
       ${agentTabsHtml({ id: "monitor-tabs", activeId: "overview", label: "Roster lobby views", tabs: [
         { id: "overview", label: "Rooms", content: overviewHtml(options.stream) },
         { id: "attention", label: "Attention", content: queueHtml() },

@@ -35,7 +35,7 @@ test("Coding streams authored room updates without turning runtime telemetry int
   assert.match(client, /const renderConversationLiveActivity/);
   assert.match(client, /data-coding-live-activity/);
   assert.match(client, /codingLiveActivityPresentation/);
-  assert.match(view, /\.coding-live-activity/);
+  assert.match(await read("src/views/coding-style.ts"), /\.coding-live-activity/);
   assert.doesNotMatch(client, /renderConversationalProgressPosts/);
   assert.doesNotMatch(client, /codingRuntimeProgressPosts/);
   assert.doesNotMatch(client, /projectCodingPeerTranscript/);
@@ -211,7 +211,7 @@ test("Coding realtime client builds as a first-class asset and reconnects by gen
   assert.match(enhancements, /const insertMention =/);
   assert.match(enhancements, /event\.key === "ArrowDown" \|\| event\.key === "ArrowUp"/);
   assert.match(enhancements, /event\.key === "Enter" \|\| event\.key === "Tab"/);
-  assert.match(view, /coding-mention-option\[hidden\]\{display:none\}/);
+  assert.match(await read("src/views/coding-style.ts"), /coding-mention-option\[hidden\]\{display:none\}/);
   assert.doesNotMatch(view, /const mentionContext=|const insertMention=/);
   assert.match(view, /const inlineTags=/);
 });

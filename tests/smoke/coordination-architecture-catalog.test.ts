@@ -53,7 +53,7 @@ test("display, navigation, and dispatch resolve through the central catalog", ()
     routePath: "/theorem",
   });
   const menu = pageMenuHtml("adaptive");
-  assert.match(menu, /id="page-menu-group-0">Rooms<\/h2>/);
+  assert.match(menu, /id="page-menu-group-0">Workspace<\/h2>/);
   for (const example of coordinationExamples()) {
     assert.match(menu, new RegExp(example.name));
     assert.match(menu, new RegExp(example.roomName?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") ?? "#"));

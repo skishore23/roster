@@ -6,28 +6,23 @@ import {
   landingSecurityHeaders,
 } from "../../src/views/landing.ts";
 
-test("marketing landing page explains the AI practice room without the world metaphor", () => {
+test("landing page leads with the implemented local Coding workflow", () => {
   const nonce = "landing-test-nonce";
   const page = landingPageHtml(nonce);
 
-  assert.match(page, /<title>Roster Lab — A safe place for your AI to make mistakes<\/title>/);
-  assert.match(page, /<main id="main">/);
-  assert.match(page, /Let your AI make mistakes/);
-  assert.match(page, /We let the AI practice the same job again and again/);
-  assert.match(page, /What is one thing your AI must never do twice/);
-  assert.match(page, /data-scene-step="base"/);
-  assert.match(page, /data-scene-step="branch"/);
-  assert.match(page, /data-scene-step="fault"/);
-  assert.match(page, /data-scene-step="replay"/);
-  assert.match(page, /aria-live="polite"/);
+  assert.match(page, /<title>Roster — Coding agents, working together<\/title>/);
+  assert.match(page, /<main id="main" tabindex="-1">/);
+  assert.match(page, /href="\/coding">Open coding workspace/);
+  assert.match(page, /href="https:\/\/github.com\/skishore23\/roster">View source/);
+  assert.match(page, /Workflow illustration/);
+  assert.match(page, /single trusted operator/);
+  assert.match(page, /tenant isolation are not implemented/);
+  assert.match(page, /npm run cli -- up/);
+  assert.match(page, /Review and merge/);
+  assert.match(page, /Reference examples|reference examples/);
   assert.match(page, /prefers-reduced-motion:reduce/);
-  assert.match(page, /script nonce="landing-test-nonce"/);
   assert.match(page, /style nonce="landing-test-nonce"/);
-  assert.doesNotMatch(page, /Effect fence \+ monotonic lease/);
-  assert.doesNotMatch(page, /Introduce labeled entropy/);
-  assert.doesNotMatch(page, /No faux determinism/);
-  assert.doesNotMatch(page, /execution worlds|real-world|parallel worlds/i);
-  assert.doesNotMatch(page, /<img\b/);
+  assert.doesNotMatch(page, /Roster Lab|refund|data-virtual-clock|data-world-|x\.com|<script\b/);
 });
 
 test("marketing landing page security policy admits only its intentional assets", () => {
@@ -35,9 +30,10 @@ test("marketing landing page security policy admits only its intentional assets"
   const policy = headers["Content-Security-Policy"] ?? "";
 
   assert.match(policy, /default-src 'self'/);
-  assert.match(policy, /script-src 'self' 'nonce-landing-test-nonce'/);
-  assert.match(policy, /style-src 'self' 'nonce-landing-test-nonce' https:\/\/fonts\.googleapis\.com/);
-  assert.match(policy, /font-src 'self' https:\/\/fonts\.gstatic\.com/);
+  assert.match(policy, /script-src 'none'/);
+  assert.match(policy, /style-src 'self' 'nonce-landing-test-nonce'/);
+  assert.match(policy, /font-src 'self'/);
+  assert.doesNotMatch(policy, /https:|unsafe-inline|unsafe-eval/);
   assert.match(policy, /frame-ancestors 'none'/);
   assert.equal(headers["X-Content-Type-Options"], "nosniff");
 });

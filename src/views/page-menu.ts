@@ -22,19 +22,28 @@ const PAGE_MENU_GROUPS: ReadonlyArray<{
   readonly items: ReadonlyArray<PageMenuItem>;
 }> = [
   {
-    label: "Rooms",
+    label: "Workspace",
     items: [
-      { id: "monitor", label: "Lobby", pattern: "All people, agents, and rooms", href: "/monitor" },
-      ...coordinationExamples().map((example) => ({
+      ...coordinationExamples().filter((example) => example.navigationId === "coding").map((example) => ({
+        id: example.navigationId as CoordinationExampleNavigationId,
+        label: "Coding",
+        pattern: `${example.name} · ${example.roomName}`,
+        href: example.routePath ?? "/coding",
+      })),
+      { id: "monitor", label: "All rooms", pattern: "Browse work and reference examples", href: "/monitor" },
+    ],
+  },
+  {
+    label: "Reference examples",
+    items: coordinationExamples().filter((example) => example.navigationId !== "coding").map((example) => ({
         id: example.navigationId as CoordinationExampleNavigationId,
         label: example.roomName ?? `#${example.navigationId}`,
         pattern: `${example.name} · ${example.navigationSummary ?? example.coordinationLabel}`,
         href: example.routePath ?? "/monitor",
       })),
-    ],
   },
   {
-    label: "System",
+    label: "Developer tools",
     items: [
       { id: "replay", label: "History", pattern: "Reconstruct past decisions", href: "/replay" },
       { id: "simulations", label: "Inspect", pattern: "Stress coordination policies", href: "/simulations" },
@@ -77,13 +86,15 @@ export const pageMenuHtml = (active?: PageMenuId): string => `
  */
 export const pageTopNavHtml = (active?: PageMenuId): string => {
   const items: ReadonlyArray<PageMenuItem> = [
-    { id: "monitor", label: "Rooms", pattern: "Open rooms", href: "/monitor" },
+    { id: "coding", label: "Coding", pattern: "Coordinate a repository change", href: "/coding" },
+    { id: "monitor", label: "All rooms", pattern: "Open rooms and reference examples", href: "/monitor" },
     { id: "monitor", label: "Attention", pattern: "Needs you", href: "/monitor?tab=attention" },
     { id: "replay", label: "History", pattern: "Past decisions", href: "/monitor?tab=history" },
     { id: "simulations", label: "Inspect", pattern: "System tools", href: "/monitor?tab=inspect" },
   ];
   return `<nav class="top-navbar-links" aria-label="Primary navigation"><ul>${items.map((item) => {
-    const isActive = (item.label === "Rooms" && active !== undefined && active !== "replay" && active !== "simulations")
+    const isActive = (item.label === "Coding" && active === "coding")
+      || (item.label === "All rooms" && active !== undefined && active !== "coding" && active !== "replay" && active !== "simulations")
       || (item.label === "History" && active === "replay")
       || (item.label === "Inspect" && active === "simulations");
     return `<li><a class="top-navbar-link${isActive ? " active" : ""}" href="${item.href}"${isActive ? ' aria-current="page"' : ""}>${esc(item.label)}</a></li>`;

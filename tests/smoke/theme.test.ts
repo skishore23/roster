@@ -143,10 +143,11 @@ test("theme runtime defaults new workspaces to Roster dark", () => {
 
 test("Coding emits one theme token layer and nonce-bearing bootstrap", async () => {
   const source = await readFile(new URL("../../src/views/coding.ts", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../../src/views/coding-style.ts", import.meta.url), "utf8");
   assert.equal(source.match(/\$\{themeCss\(\)\}/g)?.length, 2);
   assert.equal(source.match(/\$\{themeBootstrapScript\(options\.nonce\)\}/g)?.length, 2);
-  assert.match(source, /coding-workspace-settings\{[^}]+background:var\(--surface-inset/);
-  assert.doesNotMatch(source, /coding-workspace-settings\{[^}]+background:#111/);
-  assert.match(source, /coding-workspace-settings button\[type="submit"\]/);
-  assert.doesNotMatch(source, /coding-workspace-settings button\{/);
+  assert.match(source + styles, /coding-workspace-settings\{[^}]+background:var\(--surface-inset/);
+  assert.doesNotMatch(source + styles, /coding-workspace-settings\{[^}]+background:#111/);
+  assert.match(source + styles, /coding-workspace-settings button\[type="submit"\]/);
+  assert.doesNotMatch(source + styles, /coding-workspace-settings button\{/);
 });

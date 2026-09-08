@@ -108,9 +108,9 @@ test("framework routes: status parity for core endpoints", spacetimeTestOptions(
     const home = await fetch(`${base}/`, { redirect: "manual" });
     assert.equal(home.status, 200);
     const homeHtml = await home.text();
-    assert.match(homeHtml, /Roster Lab — A safe place for your AI to make mistakes/);
-    assert.match(homeHtml, /Let your AI make mistakes/);
-    assert.match(homeHtml, /data-world-engine/);
+    assert.match(homeHtml, /Roster — Coding agents, working together/);
+    assert.match(homeHtml, /Open coding workspace/);
+    assert.match(homeHtml, /href="\/coding"/);
     assert.match(homeHtml, /prefers-reduced-motion/);
 
     const removedTodo = await fetch(`${base}/todo`);
