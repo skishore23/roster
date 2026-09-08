@@ -16,7 +16,7 @@
     "sidecar:check": "node scripts/stage-sidecar.mjs --check",
     "tauri": "tauri",
     "tauri:info": "tauri info",
-    "test:native": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "test:native": "node scripts/test-native.mjs",
     "tauri:dev": "node scripts/run-tauri-dev.mjs",
     "tauri:build": "npm run sidecar:stage && tauri build",
     "test": "node --test tests/*.test.mjs",
