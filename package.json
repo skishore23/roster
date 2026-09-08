@@ -126,7 +126,7 @@
     "sharp": "^0.35.3",
     "spacetimedb": "2.6.1",
     "yjs": "^13.6.31",
-    "zod": "^4.3.6"
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "esbuild": "^0.27.2",
