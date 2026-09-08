@@ -9,7 +9,7 @@
     "generate": "node -e \"require('node:fs').rmSync('../src/spacetimedb-bindings',{recursive:true,force:true})\" && spacetime generate --lang typescript --out-dir ../src/spacetimedb-bindings --module-path . && node ../scripts/fix-spacetimedb-bindings.mjs"
   },
   "dependencies": {
-    "spacetimedb": "2.6.1"
+    "spacetimedb": "2.10.0"
   },
   "devDependencies": {
     "typescript": "~5.6.2"
