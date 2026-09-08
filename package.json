@@ -121,7 +121,7 @@
     "chalk": "5.6.2",
     "determined": "^0.3.1",
     "dotenv": "^17.2.3",
-    "hono": "^4.13.4",
+    "hono": "^4.13.7",
     "openai": "^6.16.0",
     "sharp": "^0.35.3",
     "spacetimedb": "2.6.1",
