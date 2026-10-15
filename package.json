@@ -125,7 +125,7 @@
     "openai": "^6.16.0",
     "sharp": "^0.35.3",
     "spacetimedb": "2.6.1",
-    "yjs": "^13.6.31",
+    "yjs": "^13.6.32",
     "zod": "^4.3.6"
   },
   "devDependencies": {
